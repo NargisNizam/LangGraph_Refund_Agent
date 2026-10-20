@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <title>RefundIQ | AI Support Center</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="/">
+        <span class="brand-mark">R</span>
+        <span><strong>RefundIQ</strong><small>AI SUPPORT CENTER</small></span>
+      </a>
+      <div class="nav-label">WORKSPACE</div>
+      <div class="nav-item active"><span>▦</span> New request</div>
+      <div class="nav-item"><span>◷</span> Policy overview</div>
+      <div class="sidebar-bottom">
+        <div class="status-dot"></div>
+        <div><strong>Support system</strong><small id="healthText">Checking status…</small></div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div><p class="eyebrow">CUSTOMER OPERATIONS</p><h1>Refund & Support Desk</h1></div>
+        <div class="top-chip"><span class="pulse"></span> AI assistant</div>
+      </header>
+
+      <section class="welcome">
+        <div>
+          <p class="eyebrow light">SMARTER CUSTOMER SUPPORT</p>
+          <h2>How can we help today?</h2>
+          <p>Submit a customer request and let the agent check the order, apply the demo policy, and prepare a response.</p>
+        </div>
+        <div class="welcome-icon">✦</div>
+      </section>
+
+      <div class="content-grid">
+        <section class="panel request-panel">
+          <div class="panel-heading">
+            <div><span class="step-tag">01</span><h3>Request details</h3></div>
+            <span class="muted small">Fields marked * are required</span>
+          </div>
+          <form id="requestForm">
+            <label for="threadInput">Request reference <span class="optional">AUTO-GENERATED</span></label>
+            <div class="reference-wrap">
+              <input id="threadInput" name="thread_id" readonly required>
+              <button type="button" id="newRefBtn" class="icon-button" title="Generate new reference" aria-label="Generate new reference">↻</button>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="categoryInput">Request category</label>
+                <select id="categoryInput">
+                  <option value="refund">Refund request</option>
+                  <option value="tracking">Order tracking</option>
+                  <option value="cancellation">Cancellation</option>
+                  <option value="complaint">Complaint</option>
+                  <option value="general">General question</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="orderInput">Order ID <span class="muted">(e.g. ORD-1001)</span></label>
+                <input id="orderInput" name="order_id" placeholder="ORD-1001" autocomplete="off">
+              </div>
+            </div>
+            <label for="messageInput">Customer message *</label>
+            <textarea id="messageInput" name="message" rows="5" required maxlength="4000" placeholder="Describe the customer's request…"></textarea>
+            <div class="form-footer">
+              <span class="muted small">Demo environment · No real payments</span>
+              <button id="submitBtn" class="primary-button" type="submit"><span>✦</span> Process Request</button>
+            </div>
+          </form>
+        </section>
+
+        <aside class="panel policy-panel">
+          <div class="panel-heading"><div><span class="step-tag purple">02</span><h3>Demo refund policy</h3></div></div>
+          <div class="policy-row"><span class="policy-icon green">✓</span><div><strong>7-day window</strong><p>Order must be delivered within the last 7 days.</p></div></div>
+          <div class="policy-row"><span class="policy-icon amber">$</span><div><strong>Up to $100</strong><p>Eligible refunds can be processed automatically.</p></div></div>
+          <div class="policy-row"><span class="policy-icon purple">◎</span><div><strong>Over $100</strong><p>Requires a human reviewer’s approval.</p></div></div>
+          <div class="policy-note"><strong>Learning project</strong><p>This app records demo refunds in local CSV files. It does not send or transfer money.</p></div>
+        </aside>
+      </div>
+
+      <section id="resultPanel" class="panel result-panel" hidden>
+        <div class="panel-heading">
+          <div><span class="step-tag green-step">03</span><h3>Request result</h3></div>
+          <span id="resultStatus" class="status-pill">Processing</span>
+        </div>
+        <div id="resultMessage" class="result-message"></div>
+        <div id="reviewControls" class="review-controls" hidden>
+          <div><strong>Human review required</strong><p id="reviewSummary">Review this request before continuing.</p></div>
+          <div class="review-actions">
+            <button id="rejectBtn" type="button" class="secondary-button">Reject</button>
+            <button id="approveBtn" type="button" class="primary-button">Approve refund</button>
+          </div>
+        </div>
+        <div class="result-footer"><span id="resultReference" class="muted small"></span><button id="resetBtn" class="text-button" type="button">Start a new request ↗</button></div>
+      </section>
+
+      <footer><span>RefundIQ · Educational prototype</span><span>Built with FastAPI + LangGraph + Groq</span></footer>
+    </main>
+  </div>
+  <script src="/static/script.js"></script>
+</body>
+</html>
